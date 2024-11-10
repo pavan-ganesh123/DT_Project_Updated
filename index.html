@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANT - Network Storage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="toggle-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </label>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">ANT</div>
+            <div class="nav-buttons">
+                <button id="loginBtn" class="btn-primary">Login</button>
+                <button id="signupBtn" class="btn-secondary">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to ANT</h1>
+            <p class="tagline">Store Network. Use Anywhere. Anytime.</p>
+            <div class="hero-content">
+                <div class="feature-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Smart Network Storage</h3>
+                    <p>Store network bandwidth when it's abundant, use it when you need it most.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Optimized Speed</h3>
+                    <p>Experience consistent network speeds with our intelligent distribution system.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Storage</h3>
+                    <p>Your network data is encrypted and stored securely.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose ANT?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-bell"></i>
+                    <h3>Smart Alerts</h3>
+                    <p>Customizable notifications for network status and usage.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Ready</h3>
+                    <p>Access your network storage from any device.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Real-time Analytics</h3>
+                    <p>Monitor your network usage with detailed insights.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Plans Modal -->
+    <div id="plansModal" class="modal">
+        <div class="modal-content plans-content">
+            <span class="close">&times;</span>
+            <h2>Choose Your Plan</h2>
+            <div class="plans-container">
+                <div class="plan">
+                    <h3>Basic</h3>
+                    <p class="price">$9.99/mo</p>
+                    <ul>
+                        <li>5GB Network Storage</li>
+                        <li>Standard Speed</li>
+                        <li>Basic Analytics</li>
+                    </ul>
+                    <button class="btn-primary select-plan">Select Plan</button>
+                </div>
+                <div class="plan popular">
+                    <h3>Pro</h3>
+                    <p class="price">$19.99/mo</p>
+                    <ul>
+                        <li>20GB Network Storage</li>
+                        <li>Enhanced Speed</li>
+                        <li>Advanced Analytics</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <button class="btn-primary select-plan">Select Plan</button>
+                </div>
+                <div class="plan">
+                    <h3>Enterprise</h3>
+                    <p class="price">$49.99/mo</p>
+                    <ul>
+                        <li>Unlimited Storage</li>
+                        <li>Maximum Speed</li>
+                        <li>Real-time Analytics</li>
+                        <li>24/7 Support</li>
+                        <li>Custom Solutions</li>
+                    </ul>
+                    <button class="btn-primary select-plan">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+            <h2>Network Dashboard</h2>
+            <div class="user-info">
+                <span id="userName">User</span>
+                <button id="logoutBtn" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card storage-stats">
+                <h3>Storage Statistics</h3>
+                <canvas id="storageChart"></canvas>
+                <div class="storage-info">
+                    <div class="storage-used">
+                        <span class="label">Used</span>
+                        <span class="value">65%</span>
+                    </div>
+                    <div class="storage-available">
+                        <span class="label">Available</span>
+                        <span class="value">35%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card network-speed">
+                <h3>Network Speed</h3>
+                <div class="speed-meter">
+                    <canvas id="speedChart"></canvas>
+                    <div class="current-speed">
+                        <span class="value">75</span>
+                        <span class="unit">Mbps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card nearby-networks">
+                <h3>Nearby Networks</h3>
+                <div class="networks-list">
+                    <!-- Dynamically populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="dashboard-card alerts">
+                <h3>Recent Alerts</h3>
+                <div class="alerts-list">
+                    <!-- Dynamically populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
